@@ -19,6 +19,7 @@ public class GAgent : MonoBehaviour
 {
     public List<GAction> actions = new List<GAction>();
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
+    public WorldState beliefs = new WorldState();
 
     GPlanner planner;
     Queue<GAction> actionQueue;
@@ -47,6 +48,7 @@ public class GAgent : MonoBehaviour
     {
         if (currentAction != null && currentAction.actionRunning)
         {
+            //float distanceToTarget = Vector3.Distance(currentAction.target.transform.position, this.transform.position);
             if(currentAction.agent.hasPath && currentAction.agent.remainingDistance < 1.0f)
             {
                 if(!invoked)

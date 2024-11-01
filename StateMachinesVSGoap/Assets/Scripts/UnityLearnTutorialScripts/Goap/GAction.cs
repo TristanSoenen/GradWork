@@ -32,13 +32,17 @@ public abstract class GAction : MonoBehaviour
         if (preConditions != null)
         {
             foreach(WorldState worldStates in preConditions)
+            {
                 preconditions.Add(worldStates.key, worldStates.value);
+            }
         }
 
         if (afterEffects != null)
         {
             foreach (WorldState worldStates in afterEffects)
+            {
                 effects.Add(worldStates.key, worldStates.value);
+            }
         }
     }
 

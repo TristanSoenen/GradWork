@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7880970886039044016, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7880970886039044016, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -403,6 +403,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7881807149238628900, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 454870749}
+    - targetCorrespondingSourceObject: {fileID: 7881807149238628900, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 454870752}
   m_SourcePrefab: {fileID: 100100000, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
 --- !u!1 &454870747 stripped
 GameObject:
@@ -443,14 +446,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05359642e801e9458355e82d983e877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Action
+  actionName: GoToHospital
   actionCost: 1
-  target: {fileID: 1000317771}
-  targetTag: 
-  actionDuration: 0
+  target: {fileID: 0}
+  targetTag: Door
+  actionDuration: 2
   preConditions: []
   afterEffects:
-  - key: isWating
+  - key: hasArrived
     value: 0
   agent: {fileID: 0}
   actionRunning: 0
@@ -467,7 +470,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: []
+  beliefs:
+    key: 
+    value: 0
   currentAction: {fileID: 0}
+--- !u!114 &454870752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454870747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94ce6e3b2f1e5742add7620c375ff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: GoToWaitingRoom
+  actionCost: 1
+  target: {fileID: 0}
+  targetTag: WaitingArea
+  actionDuration: 0
+  preConditions:
+  - key: hasArrived
+    value: 1
+  afterEffects:
+  - key: isWaiting
+    value: 0
+  agent: {fileID: 0}
+  actionRunning: 0
 --- !u!1 &469685279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,7 +4677,7 @@ Transform:
   m_GameObject: {fileID: 2105955016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.47, y: 0.45, z: -39.9}
+  m_LocalPosition: {x: -20.47, y: 1.02, z: -39.9}
   m_LocalScale: {x: 2.2797298, y: 5.54424, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
