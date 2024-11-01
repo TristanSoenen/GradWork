@@ -7,7 +7,7 @@ public abstract class GAction : MonoBehaviour
     public string actionName = "Action";
     public float actionCost = 1.0f;
     public GameObject target;
-    public GameObject targetTag;
+    public string targetTag;
     public float actionDuration;
     public WorldState[] preConditions;
     public WorldState[] afterEffects;
