@@ -18,8 +18,9 @@ public class SubGoal
 public class GAgent : MonoBehaviour
 {
     public List<GAction> actions = new List<GAction>();
+    public GInventory inventory = new GInventory(); 
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
-    public WorldState beliefs = new WorldState();
+    public WorldStates beliefs = new WorldStates();
 
     GPlanner planner;
     Queue<GAction> actionQueue;
@@ -27,7 +28,7 @@ public class GAgent : MonoBehaviour
     SubGoal currentGoal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Start()
+    protected virtual void Start()
     {
         GAction[] acts = this.GetComponents<GAction>();
         foreach (GAction act in acts) 
@@ -69,7 +70,7 @@ public class GAgent : MonoBehaviour
 
             foreach (KeyValuePair<SubGoal, int> sg in sortedGoals)
             {
-                actionQueue = planner.plan(actions, sg.Key.sgoals, null);
+                actionQueue = planner.plan(actions, sg.Key.sgoals, beliefs);
                 if (actionQueue != null)
                 {
                     currentGoal = sg.Key;
