@@ -4,6 +4,7 @@ public class PatientSpawner : MonoBehaviour
 {
     public GameObject patientPrefab;
     public int numPatients;
+    public float spawnTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,12 +13,12 @@ public class PatientSpawner : MonoBehaviour
             Instantiate(patientPrefab, this.transform.position, Quaternion.identity);
         }
 
-        Invoke("SpawnPatient", 5);
+        Invoke("SpawnPatient", spawnTime);
     }
 
     void SpawnPatient()
     {
         Instantiate(patientPrefab, this.transform.position, Quaternion.identity);
-        Invoke("SpawnPatient", 5);
+        Invoke("SpawnPatient", spawnTime);
     }
 }
