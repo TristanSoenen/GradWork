@@ -1079,13 +1079,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 177407082141715887}
-  - component: {fileID: 3854289044499765154}
-  - component: {fileID: 9173432359038652649}
-  - component: {fileID: 8595142410778457783}
-  - component: {fileID: 5133070620402553182}
-  - component: {fileID: 5749612294370415403}
+  - component: {fileID: 729975979693893042}
   m_Layer: 0
-  m_Name: Nurse
+  m_Name: Nurse State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,29 +1103,7 @@ Transform:
   - {fileID: 153113464759344507}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &3854289044499765154
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618188073631541129}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &9173432359038652649
+--- !u!114 &729975979693893042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1138,88 +1112,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2618188073631541129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff814605da92c5544a18b2bd98f6c4c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 270a89c951592064285313daeaf7308e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  currentAction: {fileID: 0}
---- !u!114 &8595142410778457783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618188073631541129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346f1875076780f4fa56a1656ec1c1cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: GetPatient
-  actionCost: 1
-  target: {fileID: 0}
-  targetTag: 
-  actionDuration: 2
-  preConditions:
-  - key: Waiting
-    value: 0
-  - key: FreeCubicle
-    value: 0
-  afterEffects:
-  - key: PatientPickedUp
-    value: 0
-  agent: {fileID: 0}
-  actionRunning: 0
---- !u!114 &5133070620402553182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618188073631541129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cc866762028074887a4bfef62ad07a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: GoToCubicle
-  actionCost: 1
-  target: {fileID: 0}
-  targetTag: 
-  actionDuration: 10
-  preConditions:
-  - key: PatientPickedUp
-    value: 0
-  afterEffects:
-  - key: treatPatient
-    value: 0
-  agent: {fileID: 0}
-  actionRunning: 0
---- !u!114 &5749612294370415403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618188073631541129}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bd0801aa591fc418ca5d8285af622b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: Rest
-  actionCost: 1
-  target: {fileID: 0}
-  targetTag: Lounge
-  actionDuration: 0
-  preConditions:
-  - key: exhausted
-    value: 0
-  afterEffects:
-  - key: rested
-    value: 0
-  agent: {fileID: 0}
-  actionRunning: 0
+  currentState: {fileID: 0}
+  invoked: 0
+  nurse: 1
+  canGetTreated: 0
 --- !u!1 &2629889911763255196
 GameObject:
   m_ObjectHideFlags: 0

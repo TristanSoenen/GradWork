@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,6 +13,19 @@ public class WorldState
 public class WorldStates
 {
     public Dictionary<string, int> states;
+    private int patientsTreatedCount;
+    public int PatientTreatedCount
+    {
+        get { return patientsTreatedCount; }
+        set 
+        { 
+            patientsTreatedCount = value; 
+            if(patientsTreatedCount >= 100000)
+            {
+                WriteTextFile();
+            }
+        }
+    }
 
     public WorldStates()
     {
@@ -56,5 +71,23 @@ public class WorldStates
     public Dictionary<string, int> GetStates()
     { 
         return states;
+    }
+
+    void WriteTextFile()
+    {
+        //Chat gpt helped with the writing to file
+        string directory = Directory.GetParent(Application.dataPath).FullName;
+        string fileName = "FiniteStateMachineData.txt";
+        string filePath = Path.Combine(directory, fileName);
+        StringBuilder data = new StringBuilder();
+
+        foreach (var state in states)
+        {
+            if (state.Key == "CoffeeBreak" || state.Key == "Treated" || state.Key == "Angry")
+                data.AppendLine($"{state.Key}: {state.Value}");
+        }
+
+        File.WriteAllText(filePath, data.ToString());
+        Application.Quit();
     }
 }

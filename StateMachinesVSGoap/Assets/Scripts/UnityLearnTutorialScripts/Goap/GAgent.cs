@@ -49,11 +49,11 @@ public class GAgent : MonoBehaviour
     {
         if (currentAction != null && currentAction.actionRunning)
         {
-            //float distanceToTarget = Vector3.Distance(currentAction.target.transform.position, this.transform.position);
-            if(currentAction.agent.hasPath && currentAction.agent.remainingDistance < 1.0f)
+            if (currentAction.target != null)
             {
-                if(!invoked)
+                if (!invoked)
                 {
+                    this.transform.position = currentAction.target.transform.position;
                     Invoke("CompleteAction", currentAction.actionDuration);
                     invoked = true;
                 }
@@ -62,7 +62,7 @@ public class GAgent : MonoBehaviour
         }
 
         //Agent has no plan to work on
-        if(planner ==  null || actionQueue == null)
+        if (planner ==  null || actionQueue == null)
         {
             planner = new GPlanner();
 
@@ -99,7 +99,7 @@ public class GAgent : MonoBehaviour
                 if(currentAction.target != null)
                 {
                     currentAction.actionRunning = true;
-                    currentAction.agent.SetDestination(currentAction.target.transform.position);
+                    //currentAction.agent.SetDestination(currentAction.target.transform.position);
                 }
             }
             else
