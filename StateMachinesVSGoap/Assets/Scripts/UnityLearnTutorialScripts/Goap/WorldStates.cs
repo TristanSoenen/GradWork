@@ -14,13 +14,16 @@ public class WorldStates
 {
     public Dictionary<string, int> states;
     private int patientsTreatedCount;
+    private int max = 100000;
     public int PatientTreatedCount
     {
         get { return patientsTreatedCount; }
         set 
         { 
-            patientsTreatedCount = value; 
-            if(patientsTreatedCount >= 100000)
+            if(patientsTreatedCount < max)
+                patientsTreatedCount = value;
+ 
+            if(patientsTreatedCount >= max)
             {
                 WriteTextFile();
             }
@@ -39,11 +42,16 @@ public class WorldStates
 
     void AddState(string key, int value)
     {
+        if (patientsTreatedCount >= max)
+            return;
         states.Add(key, value);
     }
 
     public void ModifyState(string key, int value)
     {
+        if (patientsTreatedCount >= max)
+            return;
+
         if (states.ContainsKey(key))
         {
             states[key] += value;
@@ -77,7 +85,7 @@ public class WorldStates
     {
         //Chat gpt helped with the writing to file
         string directory = Directory.GetParent(Application.dataPath).FullName;
-        string fileName = "FiniteStateMachineData.txt";
+        string fileName = "Data.txt";
         string filePath = Path.Combine(directory, fileName);
         StringBuilder data = new StringBuilder();
 

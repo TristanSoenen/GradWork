@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +13,7 @@ public abstract class GAction : MonoBehaviour
     public float actionDuration;
     public WorldState[] preConditions;
     public WorldState[] afterEffects;
-    public NavMeshAgent agent;
+    public GAgent agent;
 
     public Dictionary<string, int> preconditions;
     public Dictionary<string, int> effects;
@@ -31,7 +33,7 @@ public abstract class GAction : MonoBehaviour
 
     public void Awake()
     {
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent = this.gameObject.GetComponent<GAgent>();
         if (preConditions != null)
         {
             foreach(WorldState worldStates in preConditions)

@@ -2339,7 +2339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5200691168151869274
 Transform:
   m_ObjectHideFlags: 0
@@ -2902,7 +2902,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7880970886039044016}
-  - component: {fileID: 6123266042234622790}
   - component: {fileID: 2020402793686737824}
   - component: {fileID: 7001104175011693863}
   - component: {fileID: 577642859661323037}
@@ -2933,28 +2932,6 @@ Transform:
   - {fileID: 5200691168151869274}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &6123266042234622790
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7881807149238628900}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &2020402793686737824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,6 +2946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: []
   currentAction: {fileID: 0}
+  startTimer: 0
+  InTreatment: 0
 --- !u!114 &7001104175011693863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2985,7 +2964,7 @@ MonoBehaviour:
   actionCost: 1
   target: {fileID: 0}
   targetTag: Door
-  actionDuration: 2
+  actionDuration: 0.01
   preConditions: []
   afterEffects:
   - key: hasArrived
@@ -3008,7 +2987,7 @@ MonoBehaviour:
   actionCost: 1
   target: {fileID: 0}
   targetTag: Reception
-  actionDuration: 5
+  actionDuration: 0.01
   preConditions:
   - key: hasArrived
     value: 1
@@ -3033,7 +3012,7 @@ MonoBehaviour:
   actionCost: 1
   target: {fileID: 0}
   targetTag: WaitingArea
-  actionDuration: 0
+  actionDuration: 0.01
   preConditions:
   - key: hasRegistered
     value: 1
@@ -3058,7 +3037,7 @@ MonoBehaviour:
   actionCost: 1
   target: {fileID: 0}
   targetTag: 
-  actionDuration: 5
+  actionDuration: 0.01
   preConditions:
   - key: atHospital
     value: 0
@@ -3083,7 +3062,7 @@ MonoBehaviour:
   actionCost: 1
   target: {fileID: 0}
   targetTag: Home
-  actionDuration: 0
+  actionDuration: 0.01
   preConditions:
   - key: isCured
     value: 0

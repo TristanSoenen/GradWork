@@ -21,11 +21,12 @@ public class GAgent : MonoBehaviour
     public GInventory inventory = new GInventory(); 
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
     public WorldStates beliefs = new WorldStates();
-
     GPlanner planner;
     Queue<GAction> actionQueue;
     public GAction currentAction;
     SubGoal currentGoal;
+    public bool startTimer = false;
+    public bool InTreatment = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -47,6 +48,9 @@ public class GAgent : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (startTimer)
+            Invoke("GetAngry", 60.0f);
+
         if (currentAction != null && currentAction.actionRunning)
         {
             if (currentAction.target != null)
@@ -99,7 +103,6 @@ public class GAgent : MonoBehaviour
                 if(currentAction.target != null)
                 {
                     currentAction.actionRunning = true;
-                    //currentAction.agent.SetDestination(currentAction.target.transform.position);
                 }
             }
             else
@@ -107,5 +110,16 @@ public class GAgent : MonoBehaviour
                 actionQueue = null;
             }
         }
+    }
+
+    void GetAngry()
+    {
+        if (InTreatment)
+            return;
+        GWorld.Instance.GetWorld().ModifyState("Angry", 1);
+        GWorld.Instance.GetWorld().ModifyState("Waiting", -1);
+        GWorld.Instance.RemovePatient();
+        GWorld.Instance.GetWorld().PatientTreatedCount += 1;
+        Destroy(this.gameObject);
     }
 }

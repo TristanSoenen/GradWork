@@ -49,7 +49,6 @@ public class GPlanner
 
         if (!succes)
         {
-            Debug.Log("No Plan");
             return null;
         }
 
@@ -85,12 +84,6 @@ public class GPlanner
         {
             //add item to the end of our queue
             queue.Enqueue(action);
-        }
-
-        Debug.Log("The Plan is: ");
-        foreach (GAction action in queue)
-        {
-            Debug.Log("Q" + action.actionName);
         }
 
         return queue;

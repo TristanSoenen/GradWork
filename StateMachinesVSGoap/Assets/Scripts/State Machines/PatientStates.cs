@@ -81,6 +81,7 @@ public class StateGoToWaitingRoom : State
         GWorld.Instance.RemovePatient();
         GWorld.Instance.GetWorld().ModifyState("Waiting", -1);
         nextState = gameObject.AddComponent<StateLeaveAngry>();
+        invoked = true;
         agent.ChangeState();
     }
 
@@ -125,6 +126,7 @@ public class StateGetTreated : State
     public override void OnStateExit()
     {
         GWorld.Instance.GetWorld().ModifyState("Treated", 1);
+        GWorld.Instance.GetWorld().PatientTreatedCount++;
         inventory.RemoveItem(target);
     }
 }
@@ -141,7 +143,6 @@ public class StateGoHome : State
 
     void DestroyAgent()
     {
-        GWorld.Instance.GetWorld().PatientTreatedCount++;
         Destroy(this.gameObject);
     }
 }
